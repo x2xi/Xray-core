@@ -161,15 +161,13 @@ jobs:
         with:
           name: xray-${{ steps.get_filename.outputs.ASSET_NAME }}
           path: xray-${{ steps.get_filename.outputs.ASSET_NAME }}
-
-      - name: Upload files to GitHub release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
         with:
-          name: Xray-core v${{ env.VERSION }}
-          tag_name: v${{ env.VERSION }}
-          draft: false
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./xray-${{ steps.get_filename.outputs.ASSET_NAME }}.zip*
+          asset_name: Xray-core v${{ env.VERSION }}
+          tag: v${{ env.VERSION }}
+          file_glob: true
           prerelease: true
-          files: |
-            ./xray-${{ steps.get_filename.outputs.ASSET_NAME }}.zip*
+          overwrite: true
