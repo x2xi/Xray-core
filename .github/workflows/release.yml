@@ -3,7 +3,8 @@ name: Release Update
 on:
   workflow_dispatch:
   release:
-    types: [released]
+    types: 
+      - released
 
 jobs:
   deletepretag:
