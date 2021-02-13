@@ -189,8 +189,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: Xray-core ${{ env.VERSION }}
-          tag_name: ${{ env.VERSION }}
+          name: Xray-core v${{ env.VERSION }}
+          tag_name: v${{ env.VERSION }}
           draft: false
           prerelease: false
           files: |
@@ -210,8 +210,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: Xray-core ${{ env.VERSION }}
-          tag_name: ${{ env.VERSION }}
+          name: Xray-core v${{ env.VERSION }}
+          tag_name: v${{ env.VERSION }}
           draft: false
           prerelease: false
           body_path: '.github/build/changelog.md'
