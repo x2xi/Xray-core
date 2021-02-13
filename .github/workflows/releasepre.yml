@@ -3,8 +3,7 @@ name: Pre Release Update
 on:
   workflow_dispatch:
   release:
-    types: 
-      - prereleased
+    types: [prereleased]
 jobs:
   build:
     strategy:
