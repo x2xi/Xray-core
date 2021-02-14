@@ -176,7 +176,7 @@ jobs:
           ls 
           cp -rv ${GITHUB_WORKSPACE}/.github/build/systemd ./build_assets/systemd
 
-      - name: Build Mips softfloat Xray
+      - name: Build Mips softfloat Xray and Create ZIP archive
         if: matrix.softfloat == 'softfloat'
         run: |
           pushd build_assets || exit 1
