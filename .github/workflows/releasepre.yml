@@ -1,4 +1,4 @@
-name: Pre Release Update
+name: Pre Release
 
 on:
   workflow_dispatch:
@@ -11,6 +11,7 @@ jobs:
         # Include amd64 on all platforms.
         goos: [windows, freebsd, openbsd, linux, dragonfly, darwin]
         goarch: [amd64, 386]
+        softfloat: [false]
         exclude:
           # Exclude i386 on darwin and dragonfly.
           - goarch: 386
