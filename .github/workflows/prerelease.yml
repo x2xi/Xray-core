@@ -139,7 +139,7 @@ jobs:
           pushd build_assets || exit 1
           touch -mt 202001010000 xray*
           touch -mt 202001010000 *
-          zip -9vr ../Xray-$ASSET_NAME.zip .
+          zip -9vr ../Xray-$ASSET_NAME-hardfloat.zip .
           popd || exit 1
           GOMIPS=softfloat go build -v -o build_assets/xray -trimpath -ldflags "-s -w -buildid=" ./main
           pushd build_assets || exit 1
