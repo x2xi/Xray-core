@@ -191,7 +191,9 @@ jobs:
           zip -9vr ../Xray-$ASSET_NAME-softfloat.zip .
           popd || exit 1
           GOMIPS=hardfloat
-          zip -9vr ./Xray-$ASSET_NAME.zip .
+          zip -9vr ./Xray-$ASSET_NAME.zip ./Xray-$ASSET_NAME-*
+          rm -rf ./build_assets/*
+          cp ./Xray-$ASSET_NAME-* ./build_assets/
           FILE=./Xray-$ASSET_NAME.zip
           DGST=$FILE.dgst
           openssl dgst -md5    $FILE | sed 's/([^)]*)//g' >>$DGST
