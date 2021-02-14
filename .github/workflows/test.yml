@@ -48,7 +48,7 @@ jobs:
         # Include amd64 on all platforms.
         goos: [windows, freebsd, openbsd, linux, dragonfly, darwin]
         goarch: [amd64, 386]
-        softfloat: [false]
+        softfloat: [hardfloat]
         exclude:
           # Exclude i386 on darwin and dragonfly.
           - goarch: 386
@@ -89,10 +89,10 @@ jobs:
             goarch: mips64le
           - goos: linux
             goarch: mipsle
-            softfloat: true
+            softfloat: softfloat
           - goos: linux
             goarch: mips
-            softfloat: true
+            softfloat: softfloat
           # END MIPS
           # BEGIN PPC
           - goos: linux
@@ -175,7 +175,7 @@ jobs:
           cp -rv ${GITHUB_WORKSPACE}/.github/build/systemd ./build_assets/systemd
 
       - name: Build Mips softfloat Xray
-        if: matrix.softfloat == 'true'
+        if: matrix.softfloat == 'softfloat'
         run: |
           pushd build_assets || exit 1
           touch -mt 202001010000 xray*
