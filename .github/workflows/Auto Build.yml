@@ -103,7 +103,7 @@ jobs:
       GOARCH: ${{ matrix.goarch }}
       GOARM: ${{ matrix.goarm }}
       CGO_ENABLED: 0
-      BUILD: ${{github.sha}}
+      BUILD: expr substr ${{github.sha}} 1 8
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v2
@@ -127,7 +127,7 @@ jobs:
 
       - name: Build Xray
         run: |
-          BUILD = expr substr $BUILD 1 7
+          
           sed -i '/build/ s/Custom/'$BUILD'/' ./core/core.go
           cat ./core/core.go
           mkdir -p build_assets
