@@ -127,7 +127,7 @@ jobs:
 
       - name: Build Xray
         run: |
-          sed -i '/build/ s/Custom/$BUILD/' ./core/core.go
+          sed -i '/build/ s/Custom/'$BUILD'/' ./core/core.go
           cat ./core/core.go
           mkdir -p build_assets
           go build -v -o build_assets/xray -trimpath -ldflags "-s -w -buildid=" ./main
