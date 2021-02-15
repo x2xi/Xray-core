@@ -103,7 +103,8 @@ jobs:
       GOARCH: ${{ matrix.goarch }}
       GOARM: ${{ matrix.goarm }}
       CGO_ENABLED: 0
-      BUILD: ${{github.ref}}
+      BUILD_PULL_REQUEST: ${{github.base_ref}}
+      BUILD_PUSH: ${{github.head_ref}}
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v2
@@ -127,8 +128,11 @@ jobs:
 
       - name: Build Xray
         run: |
+          if ${{github.event_name}} == 'push'; then sed -i '/build/ s/Custom/'$BUILD_PUSH'/' ./core/core.go; fi
           sed -i '/build/ s/Custom/'$BUILD'/' ./core/core.go
           cat ./core/core.go
+          if ${{github.event_name}} == 'pull_request'; then sed -i '/build/ s/Custom/'$BUILD_PULL_REQUEST'/' ./core/core.go; fi
+          sed -i '/build/ s/Custom/'$BUILD'/' ./core/core.go
           mkdir -p build_assets
           go build -v -o build_assets/xray -trimpath -ldflags "-s -w -buildid=" ./main
 
