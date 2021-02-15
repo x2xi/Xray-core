@@ -1,4 +1,4 @@
-name: Auto Build
+name: Release and Build
 
 on:
   workflow_dispatch:
@@ -127,12 +127,12 @@ jobs:
       - name: Get project dependencies
         run: go mod download
       
-      - name: Auto Build Xray #自动编译
+      - name: Build Xray <Not Release> # 自动编译
         if: github.event_name != 'release'
         run: |
           mkdir -p build_assets
           go build -v -o build_assets/xray -trimpath -ldflags "-s -w -buildid=" ./main
-      - name: Release Build Xray #Release编译
+      - name: Build Xray <Released> #Release编译
         if: github.event_name == 'release'
         run: |
           mkdir -p build_assets
