@@ -103,7 +103,7 @@ jobs:
       GOARCH: ${{ matrix.goarch }}
       GOARM: ${{ matrix.goarm }}
       CGO_ENABLED: 0
-      BUILD: ${{GITHUB_SHA}}
+      BUILD: ${{github.sha}}
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v2
